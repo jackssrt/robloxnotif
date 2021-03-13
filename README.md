@@ -15,7 +15,7 @@
 ```
 * replace `YOUR NAME` with what you want robloxnotif to call you
 * replace `USERID` with the person you want to get notified about's userid
-* replace `NICKNAME` with whatever you want can be their username or Roblox Pro
+* replace `NICKNAME` with whatever you want can be their username or something like Roblox Pro
 
 - 4: OPTIONAL: create login stuff: create a file called `ROBLOSECURITY.json` and follow this format:
 ```json
