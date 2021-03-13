@@ -7,7 +7,7 @@ import json
 from datetime import datetime
 from colorama import Fore, Back, init, Style
 from playsound import playsound
-init(autoreset=True)
+init(autoreset=True) #init colorama
 
 #load usernames / nicknames
 f = open("./config.json")
@@ -15,13 +15,15 @@ config = json.load(f)
 f.close()
 usernames = config["usernames"]
 name = config["name"]
+
 # generate users_data for sending to api
 users_data = {"userIds": list(usernames.keys())}
-# load ROBLOSECURITY
-def log(text,color):
+
+def log(text,color): #log function
 	now = datetime.now().strftime("%X")
 	print(color + f"[{now}]: {text}")
 
+# load ROBLOSECURITY if it exists
 loggedOutMode = False
 try:
 	f2 = open("./ROBLOSECURITY.json")
@@ -31,15 +33,16 @@ except FileNotFoundError:
 	log("starting in logged out mode",Fore.YELLOW)
 	loggedOutMode = True
 
-def isChanged(new, last):
+
+def isChanged(new, last): #function for checking if presence has changed or not
 	
 	if not new or not last:
 		
 		return True
 	else:
 		return (last["lastLocation"] != new["lastLocation"]) or (last["userPresenceType"] != last["userPresenceType"])
-def do(a,boot):
-	
+
+def do(a,boot): #function responsible for showing notification and playing sound
 	thestring = None
 	theicon = "robloxnotif.ico"
 	thecolor = Fore.WHITE
@@ -64,12 +67,12 @@ def do(a,boot):
 		thecolor = Fore.WHITE
 		theicon = "offline.ico"
 	if thestring != None:
-		
 		log(usernames[str(a["userId"])] + " is " + thestring, thecolor)
+
 		toast.show_toast(usernames[str(a["userId"])] + " is", thestring, duration=3, icon_path="./icons/" + theicon, threaded=True)
-		
 		playsound("./sounds/robloxnotif.wav")
 		while toast.notification_active(): sleep(0.1)
+
 #main loop
 last = {}
 log("Hello "+name,Fore.GREEN)
@@ -80,24 +83,25 @@ while True:
 		else:
 			x = requests.post('https://presence.roblox.com/v1/presence/users', data=users_data)
 		data = x.json()
+
+		#write to log for debug
 		f1 = open("./log.log", "w", encoding="utf-8")
 		json.dump(data,f1,indent=4)
 		f1.close()
-		if last == {}:
-			log("running boot notifications: ",Fore.CYAN)
-		for a in range(len(data['userPresences'])):
 
+		if last == {}:
+			log("running boot notifications: ", Fore.CYAN)
+		
+		for a in range(len(data['userPresences'])):
 			if last != {}:
-				
 				if isChanged(data['userPresences'][a], last['userPresences'][a]):
-					
 					do(data['userPresences'][a],False)
-					
 			else:
-				
+				# run boot notifications
 				do(data['userPresences'][a],True)
 		last = data
 	except KeyError:
+		log("Error: code " + str(data["errors"][0]["code"]) + ": " + data["errors"][0]["message"],Fore.RED)
 		toast.show_toast("Error: code " + str(data["errors"][0]["code"]) + ": " + data["errors"][0]["message"])
 	log("***---***",Fore.BLUE)
-	sleep(10) 
+	sleep(10)
