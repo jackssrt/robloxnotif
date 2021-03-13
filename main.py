@@ -1,4 +1,4 @@
-print("--roblox notif v2 started--")
+print("--roblox notif started--")
 from win10toast import ToastNotifier
 toast = ToastNotifier()
 from time import sleep
