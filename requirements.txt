@@ -1,0 +1,3 @@
+requests
+win10toast
+colorama
