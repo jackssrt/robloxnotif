@@ -1,4 +1,6 @@
 # robloxnotif
+Sorry this only works on windows 10!
+
 ## setup
 - 1: download the code
 - 2: install dependencies:
@@ -18,6 +20,7 @@
 * replace `NICKNAME` with whatever you want can be their username or something like Roblox Pro
 
 - 4: OPTIONAL: create login stuff: create a file called `ROBLOSECURITY.json` and follow this format:
+DON'T GIVE OUT YOUR ROBLOSECURITY TO JUST ANYONE, YOUR ROBLOSECURITY IS BASICALLY YOUR PASSWORD! IF SOMEONE ELSE GETS YOUR ROBLOSECURITY THEY CAN LOGIN AS YOU AND STEAL EVERYTHING YOU OWN ON ROBLOX!
 ```json
 {
   "ROBLOSECURITY": "YOUR ROBLOSECURITY"
