@@ -27,6 +27,6 @@ DON'T GIVE OUT YOUR ROBLOSECURITY TO JUST ANYONE, YOUR ROBLOSECURITY IS BASICALL
 }
 ```
 * replace `YOUR ROBLOSECURITY` with your ROBLOSECURITY cookie, if you know how to do that do that ok
-
+* do *not* replace `ROBLOSECURITY` only replace `YOUR ROBLOSECURITY`
 ## how to use
 just run main.py and you will get notifications
