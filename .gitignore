@@ -1,5 +1,6 @@
 ROBLOSECURITY*.json
 config.json
 log.log
+error.log
 __pycache__
 .vscode/*
