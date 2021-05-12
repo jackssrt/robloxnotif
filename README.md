@@ -1,4 +1,4 @@
-# ![Logo](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/pngs/robloxnotif.png)[robloxnotif](https://www.github.com/jackssrt/robloxnotif)
+# ![Logo](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/robloxnotif.png)[robloxnotif](https://www.github.com/jackssrt/robloxnotif)
 
 ![GitHub](https://img.shields.io/github/license/jackssrt/robloxnotif) ![GitHub repo size](https://img.shields.io/github/repo-size/jackssrt/robloxnotif) ![GitHub top language](https://img.shields.io/github/languages/top/jackssrt/robloxnotif)
 ![GitHub Repo stars](https://img.shields.io/github/stars/jackssrt/robloxnotif?style=social)\
