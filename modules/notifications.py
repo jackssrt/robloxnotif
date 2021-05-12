@@ -5,7 +5,6 @@ from win10toast import ToastNotifier
 from colorama import Fore, Back, Style, init
 from time import sleep
 from playsound import playsound
-import os
 init(True)
 toast = ToastNotifier()
 
