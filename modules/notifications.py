@@ -21,20 +21,20 @@ def notify(usernames, a, boot):  # function responsible for showing notification
         if a["lastLocation"] == "":
             thestring = "playing something"
         theicon = "playing.ico"
-        thecolor = Fore.GREEN
+        thecolor = Fore.LIGHTGREEN_EX  # better for powershell
     elif str(a["userPresenceType"]) == str(Presence.Online.value):
         thestring = "online"
         theicon = "online.ico"
-        thecolor = Fore.CYAN
+        thecolor = Fore.LIGHTCYAN_EX  # better for powershell
     elif str(a["userPresenceType"]) == str(Presence.InStudio.value):
         thestring = "in studio: " + a["lastLocation"]
         if a["lastLocation"] == "":
             thestring = "in studio making something"
         theicon = "studio.ico"
-        thecolor = Fore.YELLOW
+        thecolor = Fore.LIGHTYELLOW_EX  # better for powershell
     elif (str(a["userPresenceType"]) == str(Presence.Offline.value)) and (not boot):
         thestring = "now offline"
-        thecolor = Fore.WHITE
+        thecolor = Fore.LIGHTBLACK_EX  # better for powershell
         theicon = "offline.ico"
     if thestring != "":
 
