@@ -13,7 +13,7 @@ def logError(e, msg):
 Error: {type(e).__name__} {e}
 Message: {msg}
 Check error.log for a traceback."""
-    error(text, Fore.RED)
+    error(text, Fore.LIGHTRED_EX)
     first, *others = text.splitlines()
     errorNotify(first, "\n".join(others))
 
@@ -26,7 +26,7 @@ def logErrorWarn(e, msg):
 Error: {type(e).__name__} {e}
 Message: {msg}
 Check error.log for a traceback."""
-    warn(text, Fore.YELLOW)
+    warn(text, Fore.LIGHTYELLOW_EX)
 
     first, *others = text.splitlines()
     errorNotify(first, "\n".join(others))

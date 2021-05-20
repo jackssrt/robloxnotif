@@ -5,11 +5,13 @@ init(True)
 
 
 def error(text, color):
-    log(f"{Fore.RED}[ERROR]{Style.RESET_ALL}{color} {text}", Fore.RED)
+    log(f"{Fore.LIGHTRED_EX}[ERROR]{Style.RESET_ALL}{color} {text}",
+        Fore.LIGHTRED_EX)
 
 
 def warn(text, color):
-    log(f"{Fore.YELLOW}[WARN]{Style.RESET_ALL}{color} {text}", Fore.YELLOW)
+    log(f"{Fore.LIGHTYELLOW_EX}[WARN]{Style.RESET_ALL}{color} {text}",
+        Fore.LIGHTYELLOW_EX)
 
 
 def log(text, color):  # log function
@@ -37,6 +39,6 @@ def loadConfig():
         cookie = json.load(f)["roblosecurity"]
         f.close()
     except FileNotFoundError:
-        warn("starting in logged out mode...", Fore.YELLOW)
+        log("starting in logged out mode...", Fore.LIGHTMAGENTA_EX)
         loggedin = False
     return config["usernames"], loggedin, cookie
