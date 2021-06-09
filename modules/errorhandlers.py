@@ -1,3 +1,4 @@
+import json
 import requests.exceptions
 from colorama import Fore, Back, Style
 import traceback
@@ -44,6 +45,8 @@ def handleMainLoopError(e, data):
         logErrorWarn(e, "Normal connection error, Retrying...")
     elif type(e) == requests.exceptions.ConnectionError:
         logErrorWarn(e, "Normal connection error, Retrying...")
+    elif type(e) == json.decoder.JSONDecodeError:
+        logErrorWarn(e, "JSON decoding error, Retrying...")
     # if you are here to add handling for another type of exception
     # remember to add it to the list in the except line that calls this function.
 

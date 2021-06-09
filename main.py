@@ -4,6 +4,7 @@ from modules.errorhandlers import handleMainLoopError, handleUnexpectedError
 from colorama import Fore, Back, Style
 import requests
 from time import sleep
+import json
 
 
 def main():
@@ -37,7 +38,7 @@ def main():
                         # run boot notifications
                         notify(usernames, data['userPresences'][a], True)
                 last = data
-            except (requests.exceptions.ConnectionError, requests.exceptions.SSLError, KeyError) as e:
+            except (requests.exceptions.ConnectionError, requests.exceptions.SSLError, KeyError, json.decoder.JSONDecodeError) as e:
                 handleMainLoopError(e, data)
             log("***---***", Fore.WHITE)
             sleep(10)
