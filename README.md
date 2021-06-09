@@ -15,10 +15,10 @@ robloxnotif is an open source Roblox friend notifier made in python.\
 
 Just run `main.py` with python and you will get a desktop notification when someone:
 
-- Joins a game
-- Goes online
-- Goes offline
-- Opens a game in studio
+- ![Playing icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/playing.png)Joins a game
+- ![Online icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/online.png)Goes online
+- ![Offline icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/offline.png)Goes offline
+- ![In Studio icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/studio.png)Opens a game in studio
 
 # Setup
 
