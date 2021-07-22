@@ -1,9 +1,10 @@
 import json
 import requests.exceptions
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, init
 import traceback
-from modules.utils import warn, error
+from modules.console import warn, error
 from modules.notifications import errorNotify
+init(True)
 
 
 def logError(e, msg):
@@ -54,3 +55,9 @@ def handleMainLoopError(e, data):
 def handleUnexpectedError(e):
     logError(e, "Unexpected error, Can't continue running.")
     exit()  # exit to prevent spamming roblox with requests
+
+
+def corruptedJson(e, filename):
+    logError(
+        e, f"Corrupt JSON File\nLooks like the JSON file \"{filename}\" is corrupt!")
+    exit()

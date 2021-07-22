@@ -1,22 +1,10 @@
-from datetime import datetime
+from json.decoder import JSONDecodeError
+from modules.console import log
+from modules.errorhandlers import corruptedJson, logError
 from colorama import Fore, Back, Style, init
 import json
+import os
 init(True)
-
-
-def error(text, color):
-    log(f"{Fore.LIGHTRED_EX}[ERROR]{Style.RESET_ALL}{color} {text}",
-        Fore.LIGHTRED_EX)
-
-
-def warn(text, color):
-    log(f"{Fore.LIGHTYELLOW_EX}[WARN]{Style.RESET_ALL}{color} {text}",
-        Fore.LIGHTYELLOW_EX)
-
-
-def log(text, color):  # log function
-    now = datetime.now().strftime("%X")
-    print(f"{color}{Style.DIM}[{now}]:{Style.RESET_ALL}{color} {text}")
 
 
 def isChanged(a, b):  # function for checking if presence has changed or not
@@ -26,18 +14,27 @@ def isChanged(a, b):  # function for checking if presence has changed or not
         return (a["lastLocation"] != b["lastLocation"]) or (a["userPresenceType"] != b["userPresenceType"])
 
 
+def loadJson(path):
+    try:
+        with open(path, "r") as f:
+            return json.load(f)
+    except JSONDecodeError as e:
+        corruptedJson(e, os.path.basename(path))
+
+
 def loadConfig():
     # load usernames / nicknames
-    f = open("./config.json")
-    config = json.load(f)
-    f.close()
+    try:
+        config = loadJson("./config.json")
+    except FileNotFoundError as e:
+        logError(
+            e, "Could not find a config.json!\nHave you setup robloxnotif correctly or is it missing??")
+        exit()
     # load ROBLOSECURITY if it exists
     loggedin = True
     cookie = ""
     try:
-        f = open("./roblosecurity.json")
-        cookie = json.load(f)["roblosecurity"]
-        f.close()
+        cookie = loadJson("./roblosecurity.json")["roblosecurity"]
     except FileNotFoundError:
         log("starting in logged out mode...", Fore.LIGHTMAGENTA_EX)
         loggedin = False

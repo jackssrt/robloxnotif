@@ -1,4 +1,5 @@
-from modules.utils import loadConfig, isChanged, log
+from modules.utils import loadConfig, isChanged
+from modules.console import log
 from modules.notifications import notify
 from modules.errorhandlers import handleMainLoopError, handleUnexpectedError
 from colorama import Fore, Back, Style
