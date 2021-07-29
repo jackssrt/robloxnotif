@@ -40,7 +40,7 @@ Step 4: Paste this into the file you just created:
 ```
 
 (You can add more than 3 people)\
-(This is a JSONC file, so it supports comments)\
+(This is a JSONC file, so it supports comments)
 
 Step 5: Replace everything that's UPPERCASE with its value\
 example:
@@ -69,7 +69,7 @@ Step 2: Paste this into it:
 }
 ```
 
-(This is a JSONC file, so it supports comments)\
+(This is a JSONC file, so it supports comments)
 
 Step 3: Get your roblosecurity\
 Step 4: Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3\
