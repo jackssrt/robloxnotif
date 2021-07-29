@@ -4,6 +4,9 @@ from modules.errorhandlers import corruptedJson, logError
 from colorama import Fore, Back, Style, init
 import json
 import os
+from jsonc_parser.parser import JsoncParser
+from jsonc_parser.errors import FileError, FunctionParameterError, ParserError
+
 init(True)
 
 
@@ -16,26 +19,25 @@ def isChanged(a, b):  # function for checking if presence has changed or not
 
 def loadJson(path):
     try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except JSONDecodeError as e:
+        return JsoncParser.parse_file(path)
+    except ParserError as e:
         corruptedJson(e, os.path.basename(path))
 
 
 def loadConfig():
     # load usernames / nicknames
     try:
-        config = loadJson("./config.json")
-    except FileNotFoundError as e:
+        config = loadJson("./config.jsonc")
+    except FileError as e:
         logError(
-            e, "Could not find a config.json!\nHave you setup robloxnotif correctly or is it missing??")
+            e, "Could not find a config.jsonc!\nHave you setup robloxnotif correctly or is it missing??")
         exit()
     # load ROBLOSECURITY if it exists
     loggedin = True
     cookie = ""
     try:
-        cookie = loadJson("./roblosecurity.json")["roblosecurity"]
-    except FileNotFoundError:
+        cookie = loadJson("./roblosecurity.jsonc")["roblosecurity"]
+    except (FileError, FunctionParameterError):
         log("starting in logged out mode...", Fore.LIGHTMAGENTA_EX)
         loggedin = False
     return config["usernames"], loggedin, cookie

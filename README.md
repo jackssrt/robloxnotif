@@ -26,10 +26,10 @@ Step 0: Download and install [Python](https://www.python.org/downloads/).\
 Step 1: Download the code from GitHub.\
 Step 2: Install the dependencies using pip in a command prompt:\
 `pip install -r requirements.txt`\
-Step 3: Create a file named config.json in the folder.\
+Step 3: Create a file named `config.jsonc` in the folder.\
 Step 4: Paste this into the file you just created:
 
-```json
+```jsonc
 {
 	"usernames": {
 		"PERSON 1'S USERID": "PERSON 1'S NICKNAME",
@@ -40,10 +40,12 @@ Step 4: Paste this into the file you just created:
 ```
 
 (You can add more than 3 people)\
+(This is a JSONC file, so it supports comments)\
+
 Step 5: Replace everything that's UPPERCASE with its value\
 example:
 
-```json
+```jsonc
 {
 	"usernames": {
 		"1": "!ROBLOX",
@@ -58,7 +60,7 @@ example:
 ⚠ This section handles your ROBLOSECURITY (Basically your password)\
 Skip this section if you don't need to know _what_ game your friend is playing or making. ⚠
 
-Step 1: Create a new file and name it `roblosecurity.json`\
+Step 1: Create a new file and name it `roblosecurity.jsonc`\
 Step 2: Paste this into it:
 
 ```
@@ -66,6 +68,8 @@ Step 2: Paste this into it:
 	"roblosecurity": "YOUR ROBLOSECURITY"
 }
 ```
+
+(This is a JSONC file, so it supports comments)\
 
 Step 3: Get your roblosecurity\
 Step 4: Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3\

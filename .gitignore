@@ -1,4 +1,4 @@
-ROBLOSECURITY*.json
-config.json
+ROBLOSECURITY*.json*
+config*.json*
 *.log
 __pycache__

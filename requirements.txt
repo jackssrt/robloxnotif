@@ -2,3 +2,4 @@ requests
 win10toast
 colorama
 playsound
+jsonc-parser
