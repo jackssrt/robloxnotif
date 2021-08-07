@@ -2,8 +2,16 @@
 
 [![GitHub](https://img.shields.io/github/license/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif/blob/master/LICENSE) [![GitHub repo size](https://img.shields.io/github/repo-size/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif) [![GitHub top language](https://img.shields.io/github/languages/top/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif)
 [![GitHub Repo stars](https://img.shields.io/github/stars/jackssrt/robloxnotif?style=social)](https://github.com/jackssrt/robloxnotif/stargazers)\
-robloxnotif is an open source Roblox friend notifier made in python.\
-**I have only tested this on Windows 10, but it might work on other operating systems.**
+robloxnotif is an open source Roblox friend notifier made in python.
+
+# Supported Operating Systems
+
+| OS            | Support | Tested             | Notifier                                                                                             |
+| ------------- | ------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
+| Windows 10    | ✅      | ✅                 | [win10toast-withsound](https://github.com/Tazmondo/Windows-10-Toast-Notifications-with-sound-option) |
+| Other Windows | ❓      | ❌                 | [win10toast-withsound](https://github.com/Tazmondo/Windows-10-Toast-Notifications-with-sound-option) |
+| Linux         | ✅      | ✅ (Linux mint 20) | [notify.py](https://pypi.org/project/notify-py/)                                                     |
+| MacOS         | ❓      | ❌                 | [notify.py](https://pypi.org/project/notify-py/)                                                     |
 
 # Features
 
@@ -13,7 +21,7 @@ robloxnotif is an open source Roblox friend notifier made in python.\
 
 # How to use
 
-Just run `main.py` with python and you will get a desktop notification when someone:
+Just run `main.py` with python in a terminal and you will get a desktop notification when someone:
 
 - ![Playing icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/playing.png)Joins a game
 - ![Online icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/online.png)Goes online
@@ -22,9 +30,9 @@ Just run `main.py` with python and you will get a desktop notification when some
 
 # Setup
 
-Step 0: Download and install [Python](https://www.python.org/downloads/).\
+Step 0: Download and install the latest version of [Python 3](https://www.python.org/downloads/).\
 Step 1: Download the code from GitHub.\
-Step 2: Install the dependencies using pip in a command prompt:\
+Step 2: Install the dependencies using pip in a command prompt or terminal:\
 `pip install -r requirements.txt`\
 Step 3: Create a file named `config.jsonc` in the folder.\
 Step 4: Paste this into the file you just created:
@@ -55,6 +63,9 @@ example:
 }
 ```
 
+Step 6: Run `main.py` with python in a terminal for the first time!\
+✅ You have now completed basic setup!
+
 ## [Optional] Login Setup
 
 ⚠ This section handles your ROBLOSECURITY (Basically your password)\
@@ -75,7 +86,7 @@ Step 3: Get your roblosecurity\
 Step 4: Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3\
 ✅ You are now logged in!
 
-## [Optional] Auto start
+## [Optional] [Windows-Only] Auto start
 
 Step 1: Assuming you are on Windows 10, Open task scheduler\
 Step 2: From the sidebar to the right select `Create Basic Task`\

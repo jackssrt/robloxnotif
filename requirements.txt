@@ -1,5 +1,6 @@
 requests
-win10toast
+win10toast-withsound;platform_system=="Windows"
+notifypy;platform_system=="Linux" or platform_system=="Darwin"
 colorama
 playsound
 jsonc-parser
