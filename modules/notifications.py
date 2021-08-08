@@ -2,7 +2,6 @@ from modules.enums import Presence
 from modules.utils import log
 from colorama import Fore, Back, Style, init
 from time import sleep
-from playsound import playsound
 from platform import system
 init(True)
 
@@ -51,6 +50,7 @@ def notify(usernames, a, boot):  # function responsible for showing notification
 
         elif thePlatform == "Windows":
             import win10toast
+            from playsound import playsound
             toast = win10toast.ToastNotifier()
             toast.show_toast(usernames[str(a["userId"])] + " is", thestring,
                              duration=3, icon_path="./icons/" + theicon+".ico", threaded=True, sound=False)
@@ -72,6 +72,7 @@ def errorNotify(title, body):
 
     elif thePlatform == "Windows":
         import win10toast
+        from playsound import playsound
         toast = win10toast.ToastNotifier()
         toast.show_toast(title, body,
                          duration=5, icon_path="./icons/robloxnotif.ico", threaded=True, sound=False)
