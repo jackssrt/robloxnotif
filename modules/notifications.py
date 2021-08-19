@@ -3,6 +3,7 @@ from modules.utils import log
 from colorama import Fore, Back, Style, init
 from time import sleep
 from platform import system
+from os import path
 init(True)
 
 thePlatform = system()
@@ -44,7 +45,7 @@ def notify(usernames, a, boot):  # function responsible for showing notification
             notif.title = usernames[str(a["userId"])] + " is"
             notif.message = thestring
             notif.icon = f"./icons/png/{theicon}.png"
-            notif.audio = f"./sounds/{thesound}.wav"
+            notif.audio = path.realpath(f"./sounds/{thesound}.wav")
             notif.application_name = "robloxnotif"
             notif.send(block=True)
 
@@ -54,7 +55,7 @@ def notify(usernames, a, boot):  # function responsible for showing notification
             toast = win10toast.ToastNotifier()
             toast.show_toast(usernames[str(a["userId"])] + " is", thestring,
                              duration=3, icon_path="./icons/" + theicon+".ico", threaded=True, sound=False)
-            playsound(f"./sounds/{thesound}.wav")
+            playsound(path.realpath(f"./sounds/{thesound}.wav"))
             while toast.notification_active():
                 sleep(0.1)
 
@@ -65,8 +66,8 @@ def errorNotify(title, body):
         notif = Notify()
         notif.title = title
         notif.message = body
-        notif.icon = f"./icons/png/robloxnotif.png"
-        notif.audio = f"./sounds/error.wav"
+        notif.icon = "./icons/png/robloxnotif.png"
+        notif.audio = path.realpath("./sounds/error.wav")
         notif.application_name = "robloxnotif"
         notif.send(block=True)
 
@@ -76,6 +77,6 @@ def errorNotify(title, body):
         toast = win10toast.ToastNotifier()
         toast.show_toast(title, body,
                          duration=5, icon_path="./icons/robloxnotif.ico", threaded=True, sound=False)
-        playsound("./sounds/error.wav")
+        playsound(path.realpath("./sounds/error.wav"))
         while toast.notification_active():
             sleep(0.1)
