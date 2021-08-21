@@ -1,7 +1,7 @@
 # ![Logo](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/robloxnotif.png)[robloxnotif](https://www.github.com/jackssrt/robloxnotif)
 
 [![GitHub](https://img.shields.io/github/license/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif/blob/master/LICENSE) [![GitHub repo size](https://img.shields.io/github/repo-size/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif) [![GitHub top language](https://img.shields.io/github/languages/top/jackssrt/robloxnotif)](https://github.com/jackssrt/robloxnotif)
-[![GitHub Repo stars](https://img.shields.io/github/stars/jackssrt/robloxnotif?style=social)](https://github.com/jackssrt/robloxnotif/stargazers)\
+[![GitHub Repo stars](https://img.shields.io/github/stars/jackssrt/robloxnotif?style=social)](https://github.com/jackssrt/robloxnotif/stargazers)[![Discord Server](https://img.shields.io/discord/877936145378471987)](https://discord.gg/6EzzURCEkB)\
 robloxnotif is an open source Roblox friend notifier made in python.
 
 # Supported Operating Systems
@@ -29,6 +29,8 @@ Just run `main.py` with python in a terminal and you will get a desktop notifica
 - ![In Studio icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/studio.png)Opens a game in studio
 
 # Setup
+
+If you need help setting up robloxnotif, feel free to [join the discord server!](https://discord.gg/6EzzURCEkB)
 
 Step 0: Download and install the latest version of [Python 3](https://www.python.org/downloads/).\
 Step 1: Download the code from GitHub.\
