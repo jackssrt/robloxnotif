@@ -42,6 +42,7 @@ Step 4: Paste this into the file you just created:
 ```jsonc
 {
 	"usernames": {
+		//Hi i'm a comment! You can use me for organizing in here.
 		"PERSON 1'S USERID": "PERSON 1'S NICKNAME",
 		"PERSON 2'S USERID": "PERSON 2'S NICKNAME",
 		"PERSON 3'S USERID": "PERSON 3'S NICKNAME"
@@ -50,7 +51,7 @@ Step 4: Paste this into the file you just created:
 ```
 
 (You can add more than 3 people)\
-(This is a JSONC file, so it supports comments)
+(This is a JSONC file, so it can have comments)
 
 Step 5: Replace everything that's UPPERCASE with its value\
 example:
@@ -58,8 +59,10 @@ example:
 ```jsonc
 {
 	"usernames": {
+		// Roblox admins
 		"1": "!ROBLOX",
 		"156": "real builderman",
+		// Non roblox admins
 		"261": "[!]cool dude"
 	}
 }
@@ -70,21 +73,24 @@ Step 6: Run `main.py` with python in a terminal for the first time!\
 
 ## [Optional] Login Setup
 
-⚠ This section handles your ROBLOSECURITY (Basically your password)\
+⚠ This section handles your .ROBLOSECURITY (Basically your password)\
 Skip this section if you don't need to know _what_ game your friend is playing or making. ⚠
 
 Step 1: Create a new file and name it `roblosecurity.jsonc`\
 Step 2: Paste this into it:
 
-```
+```jsonc
 {
+	// Do not leak your .ROBLOSECURITY!
 	"roblosecurity": "YOUR ROBLOSECURITY"
+	// Any one who has your roblosecurity can login as you
+	// and steal everything you own on roblox!
 }
 ```
 
-(This is a JSONC file, so it supports comments)
+(This is a JSONC file, so it can have comments)
 
-Step 3: Get your roblosecurity\
+Step 3: Get your .ROBLOSECURITY\
 Step 4: Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3\
 ✅ You are now logged in!
 
