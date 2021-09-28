@@ -1,6 +1,6 @@
 from json.decoder import JSONDecodeError
 from modules.console import log
-from modules.errorhandlers import corruptedJson, logError
+
 from colorama import Fore, Back, Style, init
 import json
 import os
@@ -18,9 +18,11 @@ def isChanged(a, b):  # function for checking if presence has changed or not
 
 
 def loadJson(path):
+
     try:
         return JsoncParser.parse_file(path)
     except ParserError as e:
+        from modules.errorhandlers import corruptedJson
         corruptedJson(e, os.path.basename(path))
 
 
@@ -29,6 +31,7 @@ def loadConfig():
     try:
         config = loadJson("./config.jsonc")
     except FileError as e:
+        from modules.errorhandlers import logError
         logError(
             e, "Could not find a config.jsonc!\nHave you setup robloxnotif correctly or is it missing??")
         exit()

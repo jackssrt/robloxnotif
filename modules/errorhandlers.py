@@ -8,9 +8,8 @@ init(True)
 
 
 def logError(e, msg):
-
     with open("./error.log", "w", encoding="utf-8") as f:
-        traceback.print_exc(file=f)
+        traceback.print_exception(e, file=f)
     text = f"""Robloxnotif has errored:
 Error: {type(e).__name__} {e}
 Message: {msg}
