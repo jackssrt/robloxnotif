@@ -35,9 +35,6 @@ def main():
                     errors = [ApiError(**i) for i in _data["errors"]]
                     handleApiError(errors)
                     continue
-                else:
-                    handleUnexpectedError(e)
-                    continue
                 if len(last) == 0:
                     log("Running boot notifications: ", Fore.CYAN)
 
