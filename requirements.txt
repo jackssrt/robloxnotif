@@ -3,4 +3,3 @@ win10toast-withsound;platform_system=="Windows"
 notify-py;platform_system=="Linux" or platform_system=="Darwin"
 colorama
 playsound;platform_system=="Windows"
-jsonc-parser
