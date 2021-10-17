@@ -1,46 +1,51 @@
 from json.decoder import JSONDecodeError
+from modules.classes import Config
 from modules.console import log
 
-from colorama import Fore, Back, Style, init
+from colorama import Fore, Back, Style
 import json
 import os
-from jsonc_parser.parser import JsoncParser
-from jsonc_parser.errors import FileError, FunctionParameterError, ParserError
+import re
 
-init(True)
-
-
-def isChanged(a, b):  # function for checking if presence has changed or not
-    if not a or not b:
-        return True
-    else:
-        return (a["lastLocation"] != b["lastLocation"]) or (a["userPresenceType"] != b["userPresenceType"])
+regex = re.compile(
+    r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)", re.MULTILINE | re.DOTALL)
 
 
-def loadJson(path):
-
+def loadJson(path: str):
     try:
-        return JsoncParser.parse_file(path)
-    except ParserError as e:
+        if not os.path.exists(path) or not os.path.isfile(path):
+            raise FileNotFoundError("File doesnt exist")
+        # taken from jsonc-parser
+
+        def __re_sub(match: re.Match):
+            if match.group(2) is not None:
+                return ""
+            else:
+                return match.group(1)
+        with open(path, "r")as f:
+            data = f.read()
+        return json.loads(regex.sub(__re_sub, data))
+    except JSONDecodeError as e:
         from modules.errorhandlers import corruptedJson
         corruptedJson(e, os.path.basename(path))
 
 
-def loadConfig():
+def loadConfig(filename_c: str = "config.jsonc", filename_r: str = "roblosecurity.jsonc") -> Config:
     # load usernames / nicknames
     try:
-        config = loadJson("./config.jsonc")
-    except FileError as e:
+        config = loadJson(filename_c)
+    except FileNotFoundError as e:
         from modules.errorhandlers import logError
         logError(
             e, "Could not find a config.jsonc!\nHave you setup robloxnotif correctly or is it missing??")
         exit()
+
     # load ROBLOSECURITY if it exists
     loggedin = True
     cookie = ""
     try:
-        cookie = loadJson("./roblosecurity.jsonc")["roblosecurity"]
-    except (FileError, FunctionParameterError):
+        cookie = loadJson(filename_r)["roblosecurity"]
+    except FileNotFoundError:
         log("starting in logged out mode...", Fore.LIGHTMAGENTA_EX)
         loggedin = False
-    return config["usernames"], loggedin, cookie
+    return Config(config["usernames"], loggedin, cookie)

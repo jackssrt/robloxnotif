@@ -1,47 +1,46 @@
 import json
+from modules.classes import ApiError
 import requests.exceptions
-from colorama import Fore, Back, Style, init
+from colorama import Fore, Back, Style
 import traceback
 from modules.console import warn, error
 from modules.notifications import errorNotify
-init(True)
 
 
-def logError(e, msg):
+def logError(e: BaseException, msg: str) -> None:
+
     with open("./error.log", "w", encoding="utf-8") as f:
-        traceback.print_exception(e, file=f)
-    text = f"""Robloxnotif has errored:
-Error: {type(e).__name__} {e}
-Message: {msg}
+        traceback.print_exc(file=f)
+    text = f"""[FATAL] {type(e).__name__} {e}
+{msg}
 Check error.log for a traceback."""
     error(text, Fore.LIGHTRED_EX)
     first, *others = text.splitlines()
     errorNotify(first, "\n".join(others))
 
 
-def logErrorWarn(e, msg):
+def logErrorWarn(e: BaseException, msg: str) -> None:
     with open("error.log", "w", encoding="utf-8") as f:
         traceback.print_exc(file=f)
 
-    text = f"""Robloxnotif has errored but it will continue running.
-Error: {type(e).__name__} {e}
-Message: {msg}
+    text = f"""{type(e).__name__} {e}
+{msg}
 Check error.log for a traceback."""
     warn(text, Fore.LIGHTYELLOW_EX)
 
-    first, *others = text.splitlines()
+    first, *others = ("[WARN] "+text).splitlines()
     errorNotify(first, "\n".join(others))
 
 
-def handleMainLoopError(e, data):
-    if type(e) == KeyError:
-        try:
-            text = str(data["errors"][0]["code"])
-            text2 = str(data["errors"][0]["message"])
-            logErrorWarn(e, f"Api error: code {text}:\n{text2}")
-        except KeyError:
-            handleUnexpectedError(e)
-    elif type(e) == requests.exceptions.SSLError:
+def handleApiError(e: BaseException, errors: list[ApiError]):
+    for error in errors:
+        text = str(error.code)
+        text2 = error.message
+        logErrorWarn(e, f"Api error: {text}\n{text2}")
+
+
+def handleMainLoopError(e: BaseException) -> None:
+    if type(e) == requests.exceptions.SSLError:
         logErrorWarn(e, "Normal connection error, Retrying...")
     elif type(e) == requests.exceptions.ConnectionError:
         logErrorWarn(e, "Normal connection error, Retrying...")
@@ -51,12 +50,12 @@ def handleMainLoopError(e, data):
     # remember to add it to the list in the except line that calls this function.
 
 
-def handleUnexpectedError(e):
+def handleUnexpectedError(e: BaseException) -> None:
     logError(e, "Unexpected error, Can't continue running.")
     exit()  # exit to prevent spamming roblox with requests
 
 
-def corruptedJson(e, filename):
+def corruptedJson(e: BaseException, filename: str):
     logError(
         e, f"Corrupt JSON File\nLooks like the JSON file \"{filename}\" is corrupt!")
     exit()
