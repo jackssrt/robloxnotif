@@ -56,7 +56,10 @@ def notify(usernames: dict[str, str], a: Presence, boot: bool):
             toast = win10toast.ToastNotifier()
             toast.show_toast(usernames[str(a.userId)] + " is", thestring,
                              duration=3, icon_path="./icons/" + theicon+".ico", threaded=True, sound=False)
-            playsound(path.realpath(f"./sounds/{thesound}.wav"))
+            try:
+                playsound(path.realpath(f"./sounds/{thesound}.wav"))
+            except UnicodeDecodeError:
+                pass
             while toast.notification_active():
                 sleep(0.1)
 
@@ -78,6 +81,9 @@ def errorNotify(title, body):
         toast = win10toast.ToastNotifier()
         toast.show_toast(title, body,
                          duration=5, icon_path="./icons/robloxnotif.ico", threaded=True, sound=False)
-        playsound(path.realpath("./sounds/error.wav"))
+        try:
+            playsound(path.realpath("./sounds/error.wav"))
+        except UnicodeDecodeError:
+            pass
         while toast.notification_active():
             sleep(0.1)
