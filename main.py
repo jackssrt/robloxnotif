@@ -1,17 +1,24 @@
-from modules.classes import ApiError, Presence
-from modules.utils import loadConfig
-from modules.console import log
-from modules.notifications import notify
-from modules.errorhandlers import handleApiError, handleMainLoopError, handleUnexpectedError
-from colorama import Fore, Back, Style
-import requests
-from time import sleep
 import json
+from time import sleep
+from typing import Dict, List
+
+import requests
+from colorama import Back, Fore, Style
+
+from modules.classes import ApiError, Presence
+from modules.console import log
+from modules.errorhandlers import (
+    handleApiError,
+    handleMainLoopError,
+    handleUnexpectedError,
+)
+from modules.notifications import notify
+from modules.utils import loadConfig
 
 
 def main():
     try:  # main loop
-        last: list[Presence] = []
+        last: List[Presence] = []
         config = loadConfig()
         shouldWait: bool = False
         while True:
@@ -22,15 +29,15 @@ def main():
             shouldWait = True
             try:
                 x = requests.post(
-                    'https://presence.roblox.com/v1/presence/users',
+                    "https://presence.roblox.com/v1/presence/users",
                     data={"userIds": list(config.usernames.keys())},
-                    cookies={
-                        ".ROBLOSECURITY": config.cookie} if config.loggedIn else {}
+                    cookies={".ROBLOSECURITY": config.cookie}
+                    if config.loggedIn
+                    else {},
                 )
-                _data: dict = x.json()
+                _data = x.json()
                 if _data["userPresences"]:
-                    presences = [Presence(**i)
-                                 for i in _data["userPresences"]]
+                    presences = [Presence(**i) for i in _data["userPresences"]]
                 elif _data["errors"]:
                     errors = [ApiError(**i) for i in _data["errors"]]
                     handleApiError(errors)
@@ -41,14 +48,16 @@ def main():
                 for a in range(len(presences)):
                     if len(last) != 0:
                         if presences[a] != last[a]:
-                            notify(config.usernames,
-                                   presences[a], False)
+                            notify(config.usernames, presences[a], False)
                     else:
                         # run boot notifications
-                        notify(config.usernames,
-                               presences[a], True)
+                        notify(config.usernames, presences[a], True)
                 last = presences.copy()
-            except (requests.exceptions.ConnectionError, requests.exceptions.SSLError, json.decoder.JSONDecodeError) as e:
+            except (
+                requests.exceptions.ConnectionError,
+                requests.exceptions.SSLError,
+                json.decoder.JSONDecodeError,
+            ) as e:
                 handleMainLoopError(e)
 
     except Exception as e:

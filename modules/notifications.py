@@ -1,21 +1,26 @@
+from os import path
+from platform import system
+from time import sleep
+from typing import Dict
+
+from colorama import Back, Fore, Style
+
 from modules.classes import Presence
 from modules.enums import PresenceType
 from modules.utils import log
-from colorama import Fore, Back, Style
-from time import sleep
-from platform import system
-from os import path
 
 thePlatform = system()
 
 
 # function responsible for showing notification and playing sound
-def notify(usernames: dict[str, str], a: Presence, boot: bool):
+def notify(usernames: Dict[str, str], a: Presence, boot: bool):
     thestring = ""
     theicon = "robloxnotif.ico"
     thecolor = Fore.WHITE
     thesound = "robloxnotif"
-    if usernames[str(a.userId)].startswith("!") or usernames[str(a.userId)].startswith("[!]"):
+    if usernames[str(a.userId)].startswith("!") or usernames[str(a.userId)].startswith(
+        "[!]"
+    ):
         thesound = "fav"
     if str(a.userPresenceType) == str(PresenceType.Playing.value):
         thestring = "playing: " + a.lastLocation
@@ -39,9 +44,10 @@ def notify(usernames: dict[str, str], a: Presence, boot: bool):
         theicon = "offline"
     if thestring != "":
 
-        log(usernames[str(a.userId)]+" is "+thestring, thecolor)
+        log(usernames[str(a.userId)] + " is " + thestring, thecolor)
         if thePlatform == "Linux" or thePlatform == "Darwin":
             from notifypy import Notify
+
             notif = Notify()
             notif.title = usernames[str(a.userId)] + " is"
             notif.message = thestring
@@ -53,9 +59,16 @@ def notify(usernames: dict[str, str], a: Presence, boot: bool):
         elif thePlatform == "Windows":
             import win10toast
             from playsound import playsound
+
             toast = win10toast.ToastNotifier()
-            toast.show_toast(usernames[str(a.userId)] + " is", thestring,
-                             duration=3, icon_path="./icons/" + theicon+".ico", threaded=True, sound=False)
+            toast.show_toast(
+                usernames[str(a.userId)] + " is",
+                thestring,
+                duration=3,
+                icon_path="./icons/" + theicon + ".ico",
+                threaded=True,
+                sound=False,
+            )
             try:
                 playsound(path.realpath(f"./sounds/{thesound}.wav"))
             except UnicodeDecodeError:
@@ -67,6 +80,7 @@ def notify(usernames: dict[str, str], a: Presence, boot: bool):
 def errorNotify(title, body):
     if thePlatform == "Linux" or thePlatform == "Darwin":
         from notifypy import Notify
+
         notif = Notify()
         notif.title = title
         notif.message = body
@@ -78,9 +92,16 @@ def errorNotify(title, body):
     elif thePlatform == "Windows":
         import win10toast
         from playsound import playsound
+
         toast = win10toast.ToastNotifier()
-        toast.show_toast(title, body,
-                         duration=5, icon_path="./icons/robloxnotif.ico", threaded=True, sound=False)
+        toast.show_toast(
+            title,
+            body,
+            duration=5,
+            icon_path="./icons/robloxnotif.ico",
+            threaded=True,
+            sound=False,
+        )
         try:
             playsound(path.realpath("./sounds/error.wav"))
         except UnicodeDecodeError:

@@ -1,4 +1,5 @@
 import dataclasses
+from typing import Dict
 
 
 @dataclasses.dataclass(eq=True)
@@ -22,6 +23,6 @@ class ApiError:
 
 @dataclasses.dataclass
 class Config:
-    usernames: dict[str, str]
+    usernames: Dict[str, str]
     loggedIn: bool
     cookie: str

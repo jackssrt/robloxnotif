@@ -8,7 +8,8 @@ import os
 import re
 
 regex = re.compile(
-    r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)", re.MULTILINE | re.DOTALL)
+    r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)", re.MULTILINE | re.DOTALL
+)
 
 
 def loadJson(path: str):
@@ -22,22 +23,29 @@ def loadJson(path: str):
                 return ""
             else:
                 return match.group(1)
-        with open(path, "r")as f:
+
+        with open(path, "r") as f:
             data = f.read()
         return json.loads(regex.sub(__re_sub, data))
     except JSONDecodeError as e:
         from modules.errorhandlers import corruptedJson
+
         corruptedJson(e, os.path.basename(path))
 
 
-def loadConfig(filename_c: str = "config.jsonc", filename_r: str = "roblosecurity.jsonc") -> Config:
+def loadConfig(
+    filename_c: str = "config.jsonc", filename_r: str = "roblosecurity.jsonc"
+) -> Config:
     # load usernames / nicknames
     try:
         config = loadJson(filename_c)
     except FileNotFoundError as e:
         from modules.errorhandlers import logError
+
         logError(
-            e, "Could not find a config.jsonc!\nHave you setup robloxnotif correctly or is it missing??")
+            e,
+            "Could not find a config.jsonc!\nHave you setup robloxnotif correctly or is it missing??",
+        )
         exit()
 
     # load ROBLOSECURITY if it exists

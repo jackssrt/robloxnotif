@@ -36,8 +36,7 @@ class TestApiError:
 
 class TestConfig:
     def test___init__(self):
-        a = c.Config({"0": "testing...", "3": "testing."},
-                     True, "haha yeah no")
+        a = c.Config({"0": "testing...", "3": "testing."}, True, "haha yeah no")
         assert a.usernames.get("0") == "testing..."
         assert a.usernames.get("3") == "testing."
         assert a.loggedIn == True

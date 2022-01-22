@@ -1,4 +1,5 @@
 import json
+from typing import List
 from modules.classes import ApiError
 import requests.exceptions
 from colorama import Fore, Back, Style
@@ -28,11 +29,11 @@ def logErrorWarn(e: BaseException, msg: str) -> None:
 Check error.log for a traceback."""
     warn(text, Fore.LIGHTYELLOW_EX)
 
-    first, *others = ("[WARN] "+text).splitlines()
+    first, *others = ("[WARN] " + text).splitlines()
     errorNotify(first, "\n".join(others))
 
 
-def handleApiError(e: BaseException, errors: list[ApiError]):
+def handleApiError(e: BaseException, errors: List[ApiError]):
     for error in errors:
         text = str(error.code)
         text2 = error.message
@@ -56,6 +57,5 @@ def handleUnexpectedError(e: BaseException) -> None:
 
 
 def corruptedJson(e: BaseException, filename: str):
-    logError(
-        e, f"Corrupt JSON File\nLooks like the JSON file \"{filename}\" is corrupt!")
+    logError(e, f'Corrupt JSON File\nLooks like the JSON file "{filename}" is corrupt!')
     exit()

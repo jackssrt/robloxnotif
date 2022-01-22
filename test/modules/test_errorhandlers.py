@@ -1,11 +1,11 @@
-from typing import Callable
-from modules import errorhandlers as e
 from inspect import signature
+from typing import Callable, List
+
+from modules import errorhandlers as e
 
 
 def test_num_args():
-    t: list[Callable] = [e.logError, e.logErrorWarn,
-                         e.corruptedJson, e.handleApiError]
+    t: List[Callable] = [e.logError, e.logErrorWarn, e.corruptedJson, e.handleApiError]
     for x in t:
         s = signature(x)
         assert len(s.parameters) == 2
