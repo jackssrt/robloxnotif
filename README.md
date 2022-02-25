@@ -13,6 +13,8 @@ robloxnotif is an open source Roblox friend notifier made in python.
 | Linux         | ✅      | ✅ (Linux mint 20) | [notify.py](https://pypi.org/project/notify-py/)                                                     |
 | MacOS         | ❓      | ❌                 | [notify.py](https://pypi.org/project/notify-py/)                                                     |
 
+Windows 10 and Linux are both automatically tested here on github.
+
 # Features
 
 - Prefix nickname with `!` or `[!]` for a different sound
@@ -23,21 +25,21 @@ robloxnotif is an open source Roblox friend notifier made in python.
 
 Just run `main.py` with python in a terminal and you will get a desktop notification when someone:
 
-- ![Playing icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/playing.png)Joins a game
-- ![Online icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/online.png)Goes online
-- ![Offline icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/offline.png)Goes offline
-- ![In Studio icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/studio.png)Opens a game in studio
+- ![Playing icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/playing.png) Joins a game
+- ![Online icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/online.png) Goes online
+- ![Offline icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/offline.png) Goes offline
+- ![In Studio icon](https://raw.githubusercontent.com/jackssrt/robloxnotif/master/icons/png/studio.png) Opens a game in studio
 
 # Setup
 
 If you need help setting up robloxnotif, feel free to [join the discord server!](https://discord.gg/6EzzURCEkB)
 
-Step 0: Download and install the latest version of [Python 3](https://www.python.org/downloads/).\
-Step 1: Download the code from GitHub.\
-Step 2: Install the dependencies using pip in a command prompt or terminal:\
-`pip install -r requirements.txt`\
-Step 3: Create a file named `config.jsonc` in the folder.\
-Step 4: Paste this into the file you just created:
+1. Download and install the latest version of [Python 3](https://www.python.org/downloads/).
+1. Download the code from GitHub.
+1. Install the dependencies using pip in a command prompt or terminal:
+`python3 -m pip install -r requirements.txt`
+1. Create a file named `config.jsonc` in the folder.
+1. Paste this into the file you just created:
 
 ```jsonc
 {
@@ -53,7 +55,7 @@ Step 4: Paste this into the file you just created:
 (You can add more than 3 people)\
 (This is a JSONC file, so it can have comments)
 
-Step 5: Replace everything that's UPPERCASE with its value\
+6. Replace everything that's UPPERCASE with its value\
 example:
 
 ```jsonc
@@ -68,7 +70,9 @@ example:
 }
 ```
 
-Step 6: Run `main.py` with python in a terminal for the first time!\
+7. Run `main.py` with python in a terminal for the first time\
+with `py main.py` or `python3 main.py` if py doesnt work
+
 ✅ You have now completed basic setup!
 
 ## [Optional] Login Setup
@@ -76,35 +80,36 @@ Step 6: Run `main.py` with python in a terminal for the first time!\
 ⚠ This section handles your .ROBLOSECURITY (Basically your password)\
 Skip this section if you don't need to know _what_ game your friend is playing or making. ⚠
 
-Step 1: Create a new file and name it `roblosecurity.jsonc`\
-Step 2: Paste this into it:
+1. Create a new file and name it `roblosecurity.jsonc`
+2. Paste this into it:
 
 ```jsonc
 {
 	// Do not leak your .ROBLOSECURITY!
 	"roblosecurity": "YOUR ROBLOSECURITY"
 	// Any one who has your roblosecurity can login as you
-	// and steal everything you own on roblox!
+	// and steal everything you have on roblox!
 }
 ```
 
 (This is a JSONC file, so it can have comments)
 
-Step 3: Get your .ROBLOSECURITY\
-Step 4: Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3\
+3. Get your .ROBLOSECURITY
+4. Replace `YOUR ROBLOSECURITY` with your roblosecurity that you got in Step 3
+
 ✅ You are now logged in!
 
 ## [Optional] [Windows-Only] Auto start
 
-Step 1: Assuming you are on Windows 10, Open task scheduler\
-Step 2: From the sidebar to the right select `Create Basic Task`\
-Step 3: Name it anything you want\
-Step 4: Set it's trigger to `When I log on`\
-Step 5: Set it's action to `Start a program`\
-Step 6: Set the program to be `powershell.exe`\
-Step 7: Set `Add arguments` to be `py PATH TO MAIN`\
-Step 8: Replace `PATH TO MAIN` with the path to `main.py` _including_ the file extension.\
-Step 9: Set `Start in` to be the path to the robloxnotif folder
+1. Assuming you are on Windows 10, Open task scheduler
+2. From the sidebar to the right select `Create Basic Task`
+3. Name it anything you want
+4. Set it's trigger to `When I log on`
+5. Set it's action to `Start a program`
+6. Set the program to be `powershell.exe`
+7. Set `Add arguments` to be `py PATH TO MAIN`
+8. Replace `PATH TO MAIN` with the path to `main.py` _including_ the file extension.
+9. Set `Start in` to be the path to the robloxnotif folder
 
 ✅ robloxnotif will now automatically start in a PowerShell window when you log on to Windows!
 
