@@ -7,11 +7,8 @@ from colorama import Back, Fore, Style
 
 from modules.classes import ApiError, Presence
 from modules.console import log
-from modules.errorhandlers import (
-    handleApiError,
-    handleMainLoopError,
-    handleUnexpectedError,
-)
+from modules.errorhandlers import (handleApiError, handleMainLoopError,
+                                   handleUnexpectedError)
 from modules.notifications import notify
 from modules.utils import loadConfig
 
@@ -36,9 +33,9 @@ def main():
                     else {},
                 )
                 _data = x.json()
-                if _data["userPresences"]:
+                if _data.get("userPresences"):
                     presences = [Presence(**i) for i in _data["userPresences"]]
-                elif _data["errors"]:
+                elif _data.get("errors"):
                     errors = [ApiError(**i) for i in _data["errors"]]
                     handleApiError(errors)
                     continue
