@@ -27,7 +27,7 @@ def main():
             try:
                 x = requests.post(
                     "https://presence.roblox.com/v1/presence/users",
-                    data={"userIds": list(config.usernames.keys())},
+                    json={"userIds": list(config.usernames.keys())},
                     cookies={".ROBLOSECURITY": config.cookie}
                     if config.loggedIn
                     else {},
